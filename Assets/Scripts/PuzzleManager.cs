@@ -7,12 +7,15 @@ public class PuzzleManager : MonoBehaviour
 {
     public static PuzzleManager Instance;
 
-    public GameObject cubePrefab; // Prefab for the cube game object
+    public Transform cubesParent;
+    public PuzzleCube cubePrefab; // Prefab for the cube game object
     public Vector2Int gridSize = new (6,10); // Number of cubes in each row and column of the grid
     public float spacing = 1f; // Space between cubes in the grid
+    public float disconnectDistance = 0.1f;
     
-    private List<GameObject>[,] grid; // 2D array to store the grid of cubes
-    private Dictionary<GameObject, Vector2Int> positions = new();
+    private Dictionary<Vector2Int,List<PuzzleCube>> _grid = new(); // 2D array to store the grid of cubes
+    private readonly Dictionary<PuzzleCube, Vector2Int> _positions = new();
+    private Dictionary<PuzzleCube, Vector2Int> _required = new();
 
     private void Awake()
     {
@@ -21,9 +24,25 @@ public class PuzzleManager : MonoBehaviour
 
     private void Start()
     {
-        // Initialize the grid array
-        grid = new List<GameObject>[gridSize.x, gridSize.y];
-        
+        if (cubesParent == null)
+            cubesParent = transform;
+        foreach (var cube in cubesParent.GetComponentsInChildren<PuzzleCube>())
+        {
+            var pos = GetCellFromWorldPosition(cube.transform.position);
+
+            // Instantiate a new cube at the calculated position
+            cube.transform.position = transform.position + spacing * new Vector3(pos.x, pos.y);
+                
+            // Store the newly created cube in the grid array
+            _grid.Add(pos, new List<PuzzleCube> {cube});
+            _positions.Add(cube, pos);
+            if (cube.required)
+                _required.Add(cube, pos);
+        }
+    }
+
+    private void CreateFromPrefab()
+    {
         // Create a loop to generate the grid of cubes
         for (var x = 0; x < gridSize.x; x++)
         {
@@ -37,22 +56,29 @@ public class PuzzleManager : MonoBehaviour
                 var cube = Instantiate(cubePrefab,  transform.position+new Vector3(posX, posY), Quaternion.identity, transform);
                 
                 // Store the newly created cube in the grid array
-                grid[x, y] = new List<GameObject> {cube};
-                positions.Add(cube, new Vector2Int(x,y));
+                var posKey = new Vector2Int(x, y);
+                _grid.Add(posKey, new List<PuzzleCube> {cube});
+                _positions.Add(cube, posKey);
+                if (cube.required)
+                    _required.Add(cube, posKey);
                 cube.name += $"_{x},{y}";
             }
         }
     }
 
-    public Vector3 PlaceOnGrid(Vector2 position, GameObject cube, bool extraZ)
+    public void PlaceOnGrid(Vector2 position, PuzzleCube cube, bool extraZ)
     {
-        var pos = positions[cube];
+        var pos = _positions[cube];
         var newPos = GetCellFromWorldPosition(position);
+        if (!_grid.ContainsKey(newPos))
+        {
+            cube.target.localPosition = Vector3.zero;
+            return;   
+        }
         if (pos != newPos)
-            grid[pos.x, pos.y].Remove(cube);
-        newPos.x = Math.Clamp(newPos.x, 0, gridSize.x-1);
-        newPos.y = Math.Clamp(newPos.y, 0, gridSize.y-1);
-        var newCell = grid[newPos.x, newPos.y];
+            _grid[pos].Remove(cube);
+            
+        var newCell = _grid[newPos];
         if (pos != newPos)
         {
             newCell.Add(cube);
@@ -71,8 +97,26 @@ public class PuzzleManager : MonoBehaviour
                 cellPosition.z -= spacing / 4;
             }
         }
-        positions[cube] = newPos;
-        return transform.position + cellPosition;
+        _positions[cube] = newPos;
+        if (!extraZ && PuzzleSolved())
+            Debug.Log("LEVEL SOLVED!");
+
+        var final = transform.position + cellPosition;
+        cube.target.position = final;
+
+        if (Mathf.Abs(cube.transform.position.x - final.x) < disconnectDistance
+            && Mathf.Abs(cube.transform.position.y - final.y) < disconnectDistance
+            && cube.transform.localPosition.z < disconnectDistance
+            && cube.transform.position.z > final.z - disconnectDistance)
+        {
+            // Set the position of the game object to the snapped position
+            cube.target.position = final;
+            var s = newCell.Aggregate($"{cube.name}[{newPos}]", (current, c) => current + (c.name + " "));
+            if(!extraZ)
+                Debug.Log(s);
+        }
+        else 
+            cube.target.localPosition = Vector3.zero;
     }
 
     private Vector2Int GetCellFromWorldPosition(Vector3 worldPosition)
@@ -84,5 +128,10 @@ public class PuzzleManager : MonoBehaviour
 
         // Return the grid position as a Vector2Int
         return new Vector2Int(x,y);
+    }
+
+    private bool PuzzleSolved()
+    {
+        return _required.All(r => _positions[r.Key] == r.Value);
     }
 }
