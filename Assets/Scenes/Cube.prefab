@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 6969650142419123549}
-  gridSize: 0.15
+  disconnectDistance: 0.1
 --- !u!1 &8413025893893034585
 GameObject:
   m_ObjectHideFlags: 0
