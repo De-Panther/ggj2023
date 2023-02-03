@@ -10,8 +10,11 @@ namespace Coherence.Generated
 
 	public static class Archetypes
 	{
+		public const int VisualUser_3d8e0d6bf6d1f18448fd5924dc4297a2Index = 0;
 
 		public static Dictionary<string, int> IndexForName = new Dictionary<string, int>() {
+			{ "VisualUser_3d8e0d6bf6d1f18448fd5924dc4297a2", 0 },
+
 		};
 	}
 }

@@ -16,7 +16,7 @@ namespace Coherence.Generated
 
 	public class Definition : IDefinition
 	{
-		public const string schemaId = "8b3cb0a37f973eee5af49a30f864b39078f86e0a";
+		public const string schemaId = "49a759181f029f42acd1e0ff975d5030f80626e8";
 		public const uint InternalWorldPosition = 0;
 		public const uint InternalWorldOrientation = 1;
 		public const uint InternalLocalUser = 2;
@@ -119,6 +119,10 @@ namespace Coherence.Generated
 		public const uint InternalGenericFieldULong3 = 99;
 		public const uint InternalGenericFieldColor0 = 100;
 		public const uint InternalGenericFieldColor1 = 101;
+		public const uint InternalVisualUser_VisualUser_2895662808262937726 = 102;
+		public const uint InternalArchetypeVisualUser_3d8e0d6bf6d1f18448fd5924dc4297a2_WorldPosition_LOD0 = 103;
+		public const uint InternalArchetypeVisualUser_3d8e0d6bf6d1f18448fd5924dc4297a2_WorldOrientation_LOD0 = 104;
+		public const uint InternalArchetypeVisualUser_3d8e0d6bf6d1f18448fd5924dc4297a2_VisualUser_VisualUser_2895662808262937726_LOD0 = 105;
 		public const uint InternalAuthorityRequest = 0;
 		public const uint InternalAuthorityTransfer = 1;
 		public const uint InternalQuerySynced = 2;
@@ -229,6 +233,10 @@ namespace Coherence.Generated
 			{ 99, "GenericFieldULong3" },
 			{ 100, "GenericFieldColor0" },
 			{ 101, "GenericFieldColor1" },
+			{ 102, "VisualUser_VisualUser_2895662808262937726" },
+			{ 103, "ArchetypeVisualUser_3d8e0d6bf6d1f18448fd5924dc4297a2_WorldPosition_LOD0" },
+			{ 104, "ArchetypeVisualUser_3d8e0d6bf6d1f18448fd5924dc4297a2_WorldOrientation_LOD0" },
+			{ 105, "ArchetypeVisualUser_3d8e0d6bf6d1f18448fd5924dc4297a2_VisualUser_VisualUser_2895662808262937726_LOD0" },
 		};
 
 		public static string ComponentNameForTypeId(uint typeId)
@@ -454,6 +462,14 @@ namespace Coherence.Generated
 					return GenericFieldColor0.Deserialize(inProtocolStream);
 				case InternalGenericFieldColor1:
 					return GenericFieldColor1.Deserialize(inProtocolStream);
+				case InternalVisualUser_VisualUser_2895662808262937726:
+					return VisualUser_VisualUser_2895662808262937726.Deserialize(inProtocolStream);
+				case InternalArchetypeVisualUser_3d8e0d6bf6d1f18448fd5924dc4297a2_WorldPosition_LOD0:
+					return WorldPosition.DeserializeArchetypeVisualUser_3d8e0d6bf6d1f18448fd5924dc4297a2_WorldPosition_LOD0(inProtocolStream);
+				case InternalArchetypeVisualUser_3d8e0d6bf6d1f18448fd5924dc4297a2_WorldOrientation_LOD0:
+					return WorldOrientation.DeserializeArchetypeVisualUser_3d8e0d6bf6d1f18448fd5924dc4297a2_WorldOrientation_LOD0(inProtocolStream);
+				case InternalArchetypeVisualUser_3d8e0d6bf6d1f18448fd5924dc4297a2_VisualUser_VisualUser_2895662808262937726_LOD0:
+					return VisualUser_VisualUser_2895662808262937726.DeserializeArchetypeVisualUser_3d8e0d6bf6d1f18448fd5924dc4297a2_VisualUser_VisualUser_2895662808262937726_LOD0(inProtocolStream);
 				default:
 					return (null, 0, 0);
 			}
@@ -769,6 +785,9 @@ namespace Coherence.Generated
 					break;
 				case InternalGenericFieldColor1:
 					GenericFieldColor1.Serialize((GenericFieldColor1)data, mask, protocolStream);
+					break;
+				case InternalVisualUser_VisualUser_2895662808262937726:
+					VisualUser_VisualUser_2895662808262937726.Serialize((VisualUser_VisualUser_2895662808262937726)data, mask, protocolStream);
 					break;
 			}
 		}

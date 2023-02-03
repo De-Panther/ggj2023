@@ -44,8 +44,8 @@ PlayerSettings:
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
   defaultScreenHeight: 1080
-  defaultScreenWidthWeb: 960
-  defaultScreenHeightWeb: 600
+  defaultScreenWidthWeb: 600
+  defaultScreenHeightWeb: 400
   m_StereoRenderingPath: 0
   m_ActiveColorSpace: 0
   m_MTRendering: 1
@@ -138,6 +138,8 @@ PlayerSettings:
   preloadedAssets:
   - {fileID: 11400000, guid: 9faf5ed615088dd49b3720283682b51a, type: 2}
   - {fileID: 11400000, guid: cd5289bc366a8c84ab935267b59cb1d6, type: 2}
+  - {fileID: 11400000, guid: e2925e9778aeca64daa5e624e214e41f, type: 2}
+  - {fileID: -7640249947355704750, guid: c74494a0ffaa82c40bf1500fa350a3dc, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -608,14 +610,14 @@ PlayerSettings:
   webGLMemorySize: 16
   webGLExceptionSupport: 1
   webGLNameFilesAsHashes: 0
-  webGLDataCaching: 1
+  webGLDataCaching: 0
   webGLDebugSymbols: 0
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
   webGLTemplate: PROJECT:WebXR2020
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
-  webGLCompressionFormat: 1
+  webGLCompressionFormat: 2
   webGLWasmArithmeticExceptions: 0
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
