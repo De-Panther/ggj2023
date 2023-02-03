@@ -33,13 +33,12 @@
       "url": "https://package.openupm.com"
     },
     "com.de-panther.webxr-interactions": {
-      "version": "0.16.1-preview",
+      "version": "file:webxr-interactions",
       "depth": 0,
-      "source": "registry",
+      "source": "embedded",
       "dependencies": {
         "com.de-panther.webxr": "0.16.0-preview"
-      },
-      "url": "https://package.openupm.com"
+      }
     },
     "com.unity.burst": {
       "version": "1.6.6",

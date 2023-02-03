@@ -361,12 +361,12 @@ MonoBehaviour:
     lodLevels:
     - distance: 0
     archetypeName: VisualUser_3d8e0d6bf6d1f18448fd5924dc4297a2
-    GeneratesArchetypeDefinition: 0
+    GeneratesArchetypeDefinition: 1
   InterpolationLocation: 1
   bakedScriptType: Coherence.Generated.CoherenceSyncVisualUser, Assembly-CSharp
   approveAuthorityTransferRequests: 1
   simulationType: 0
-  authorityTransferType: 2
+  authorityTransferType: 0
   orphanedBehavior: 0
   lifetimeType: 0
   uniquenessType: 0

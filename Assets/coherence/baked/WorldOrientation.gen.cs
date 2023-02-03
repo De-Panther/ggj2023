@@ -73,6 +73,18 @@ namespace Coherence.Generated
 			}
 			return (val, mask, null);
 		}
+		public static (WorldOrientation, uint, uint?) DeserializeArchetypeCube_11d1f639851fbe64ebbe9a1d86320589_WorldOrientation_LOD0(InProtocolBitStream bitStream)
+		{
+			var mask = (uint)0;
+			var val = new WorldOrientation();
+			if (bitStream.ReadMask())
+			{
+				val.value = (bitStream.ReadQuaternion(32)).ToUnityQuaternion();
+				mask |= 0b00000000000000000000000000000001;
+			}
+
+			return (val, mask, 0);
+		}
 		public static (WorldOrientation, uint, uint?) DeserializeArchetypeVisualUser_3d8e0d6bf6d1f18448fd5924dc4297a2_WorldOrientation_LOD0(InProtocolBitStream bitStream)
 		{
 			var mask = (uint)0;
