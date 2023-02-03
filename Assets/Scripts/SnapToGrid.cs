@@ -3,7 +3,7 @@ using UnityEngine;
 public class SnapToGrid : MonoBehaviour
 {
     public Transform target;
- 
+    public float disconnectDistance = 0.3f;
 
     private Vector3 _lastPos;
     private bool _extraZ;
@@ -20,9 +20,12 @@ public class SnapToGrid : MonoBehaviour
     private void PlaceCell()
     {
         var position = PuzzleManager.Instance.PlaceOnGrid(transform.position, gameObject, _extraZ);
-        
-        // Set the position of the game object to the snapped position
-        target.position = position;
+
+        if (Vector3.Distance(position, transform.position) < disconnectDistance)
+            // Set the position of the game object to the snapped position
+            target.position = position;
+        else
+            target.position = transform.position;
     }
     
     void OnMouseDown()
