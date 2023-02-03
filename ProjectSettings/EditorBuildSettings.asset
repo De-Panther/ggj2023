@@ -7,3 +7,4 @@ EditorBuildSettings:
   m_Scenes: []
   m_configObjects:
     WebXR.Settings: {fileID: 11400000, guid: e2925e9778aeca64daa5e624e214e41f, type: 2}
+    io.coherence.simulator.build.options: {fileID: 11400000, guid: d9077167f84c6f94aa886b6b2bd15535, type: 2}
