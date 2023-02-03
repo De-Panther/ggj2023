@@ -3,6 +3,7 @@
     "com.de-panther.webxr": "0.16.0-preview",
     "com.de-panther.webxr-input-profiles-loader": "0.4.0",
     "com.de-panther.webxr-interactions": "0.16.1-preview",
+    "io.coherence.sdk": "0.10.8",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.rider": "3.0.18",
     "com.unity.ide.visualstudio": "2.0.17",
@@ -46,6 +47,13 @@
       "scopes": [
         "com.de-panther",
         "com.atteneder"
+      ]
+    },
+    {
+      "name": "coherence",
+      "url": "https://registry.npmjs.org",
+      "scopes": [
+        "io.coherence.sdk"
       ]
     }
   ]
