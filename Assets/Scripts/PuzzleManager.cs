@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,10 +11,12 @@ public class PuzzleManager : MonoBehaviour
     public Vector2Int gridSize = new (6,10); // Number of cubes in each row and column of the grid
     public float spacing = 1f; // Space between cubes in the grid
     public float disconnectDistance = 0.1f;
+    public System.Action FinishedPuzzle;
     
-    private Dictionary<Vector2Int,List<PuzzleCube>> _grid = new(); // 2D array to store the grid of cubes
-    private readonly Dictionary<PuzzleCube, Vector2Int> _positions = new();
-    private Dictionary<PuzzleCube, Vector2Int> _required = new();
+    private readonly Dictionary<Vector2Int,List<PuzzleCube>> _grid = new(); // 2D array to store the grid of cubes
+    private readonly Dictionary<PuzzleCube, Vector2Int> _movables = new();
+    private readonly Dictionary<PuzzleCube, Vector2Int> _required = new();
+    private bool _shuffled;
 
     private void Awake()
     {
@@ -28,19 +29,46 @@ public class PuzzleManager : MonoBehaviour
             cubesParent = transform;
         foreach (var cube in cubesParent.GetComponentsInChildren<PuzzleCube>())
         {
-            var pos = GetCellFromWorldPosition(cube.transform.position);
+            var pos = GetCell(cube.transform.position);
 
-            // Instantiate a new cube at the calculated position
-            cube.transform.position = transform.position + spacing * new Vector3(pos.x, pos.y);
+            // Places a new cube at the calculated position
+            cube.transform.position = GetWorld(pos);
                 
-            // Store the newly created cube in the grid array
             _grid.Add(pos, new List<PuzzleCube> {cube});
-            _positions.Add(cube, pos);
-            if (cube.required)
-                _required.Add(cube, pos);
+            // Store the newly created cube in the grid array
+            if (cube.movable)
+            {
+                _movables.Add(cube, pos);
+                if (cube.required)
+                    _required.Add(cube, pos);
+            }
         }
+        Shuffle();
     }
 
+    private void Shuffle()
+    {
+        // separate a cube to enforce that at least one cube will be randomized
+        var lastCube = _movables.Keys.Last();
+        foreach (var cube in _movables.Keys.ToList())
+        {
+            var cubePos = _movables[cube];
+            var other = _movables.Keys.Where(k=>k!=cube&&k!=lastCube).OrderBy(_ => Random.value).FirstOrDefault();
+            if(other == null)
+                continue;
+            var otherPos = _movables[other];
+            _movables[cube] = otherPos;
+            cube.transform.position = GetWorld(otherPos);
+            _grid[cubePos].Remove(cube);
+            _grid[cubePos].Add(other);
+            _movables[other] = cubePos;
+            other.transform.position = GetWorld(cubePos);
+            _grid[otherPos].Remove(other);
+            _grid[otherPos].Add(cube);
+        }
+        _shuffled = true;
+    }
+    
     private void CreateFromPrefab()
     {
         // Create a loop to generate the grid of cubes
@@ -58,7 +86,7 @@ public class PuzzleManager : MonoBehaviour
                 // Store the newly created cube in the grid array
                 var posKey = new Vector2Int(x, y);
                 _grid.Add(posKey, new List<PuzzleCube> {cube});
-                _positions.Add(cube, posKey);
+                _movables.Add(cube, posKey);
                 if (cube.required)
                     _required.Add(cube, posKey);
                 cube.name += $"_{x},{y}";
@@ -68,13 +96,15 @@ public class PuzzleManager : MonoBehaviour
 
     public void PlaceOnGrid(Vector2 position, PuzzleCube cube, bool extraZ)
     {
-        var pos = _positions[cube];
-        var newPos = GetCellFromWorldPosition(position);
+        var pos = _movables[cube];
+        var newPos = GetCell(position);
         if (!_grid.ContainsKey(newPos))
         {
+            cube.GridConnected(false);
             cube.target.localPosition = Vector3.zero;
             return;   
         }
+        cube.GridConnected(true);
         if (pos != newPos)
             _grid[pos].Remove(cube);
             
@@ -97,9 +127,9 @@ public class PuzzleManager : MonoBehaviour
                 cellPosition.z -= spacing / 4;
             }
         }
-        _positions[cube] = newPos;
+        _movables[cube] = newPos;
         if (!extraZ && PuzzleSolved())
-            Debug.Log("LEVEL SOLVED!");
+            FinishedPuzzle?.Invoke();
 
         var final = transform.position + cellPosition;
         cube.target.position = final;
@@ -112,14 +142,14 @@ public class PuzzleManager : MonoBehaviour
             // Set the position of the game object to the snapped position
             cube.target.position = final;
             var s = newCell.Aggregate($"{cube.name}[{newPos}]", (current, c) => current + (c.name + " "));
-            if(!extraZ)
-                Debug.Log(s);
+//            if(!extraZ)
+//                Debug.Log(s);
         }
         else 
             cube.target.localPosition = Vector3.zero;
     }
 
-    private Vector2Int GetCellFromWorldPosition(Vector3 worldPosition)
+    private Vector2Int GetCell(Vector3 worldPosition)
     {
         var pos = worldPosition - transform.position;
         // Calculate the grid position from the world position
@@ -129,9 +159,14 @@ public class PuzzleManager : MonoBehaviour
         // Return the grid position as a Vector2Int
         return new Vector2Int(x,y);
     }
+    
+    private Vector3 GetWorld(Vector2Int cellPosition)
+    {
+        return  transform.position + spacing * new Vector3(cellPosition.x, cellPosition.y);;
+    }
 
     private bool PuzzleSolved()
     {
-        return _required.All(r => _positions[r.Key] == r.Value);
+        return _shuffled && _required.All(r => _movables[r.Key] == r.Value);
     }
 }

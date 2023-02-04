@@ -1,23 +1,29 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
+using WebXR.Interactions;
 
 public class PuzzleCube : MonoBehaviour
 {
-    [Header("Parameters")] 
     public bool movable = true;
     public bool required = true;
-    public bool randomized = true;
-    
-    [Header("Settings")]
     public Transform target;
-    public float disconnectDistance = 0.1f;
+    public Action ConnectedToGridEvent;
+    public Action DisconnectedFromGridEvent;
 
     private Vector3 _lastPos;
     private bool _extraZ;
+    private bool _connectedToGrid = true;
+
+    private void Start()
+    {
+        if (!movable)
+            GetComponent<MouseDragObject>().enabled = false;
+    }
 
     private void Update()
     {
+        if(!movable)
+            return;
         if (_lastPos == transform.position)
             return;
         _lastPos = transform.position;
@@ -28,7 +34,6 @@ public class PuzzleCube : MonoBehaviour
     private void PlaceCell()
     {
         PuzzleManager.Instance.PlaceOnGrid(transform.position, this, _extraZ);
-
     }
     
     void OnMouseDown()
@@ -41,5 +46,16 @@ public class PuzzleCube : MonoBehaviour
     {
         _extraZ = false;
         PlaceCell();
+    }
+
+    public void GridConnected(bool connected)
+    {
+        if (connected == _connectedToGrid)
+            return;
+        _connectedToGrid = connected;
+        if(connected)
+            ConnectedToGridEvent?.Invoke();
+        else 
+            DisconnectedFromGridEvent?.Invoke();
     }
 }
