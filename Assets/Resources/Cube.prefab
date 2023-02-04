@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4002065186457793174}
   - component: {fileID: 1101461148602601632}
   - component: {fileID: 8882805958271233583}
+  - component: {fileID: 948235190837184724}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Interactable
@@ -188,6 +189,8 @@ MonoBehaviour:
       lodStepsActive: 1
     - component: {fileID: 4002065186457793174}
       lodStepsActive: 1
+    - component: {fileID: 948235190837184724}
+      lodStepsActive: 1
     lodLevels:
     - distance: 0
     archetypeName: Cube_11d1f639851fbe64ebbe9a1d86320589
@@ -327,7 +330,7 @@ MonoBehaviour:
       data:
         component: {fileID: 4002065186457793177}
         setOnRemote: 1
-        resetOnAuthority: 0
+        resetOnAuthority: 1
     - rid: 4626226047704891392
       type: {class: ScaleBinding, ns: Coherence.Toolkit.Bindings.TransformBindings, asm: Coherence.Toolkit}
       data:
@@ -387,3 +390,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoAssignOnSceneInstances: 0
+--- !u!114 &948235190837184724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4002065186457793176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 019bd844c9674644da4824004c95973b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coherenceSync: {fileID: 1101461148602601632}
+  mouseDragObject: {fileID: 4002065186457793174}
