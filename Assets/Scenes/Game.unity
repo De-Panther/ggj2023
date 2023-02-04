@@ -4541,8 +4541,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originTransform: {fileID: 214930529}
   visual: {fileID: 1694373858}
-  leftController: {fileID: 0}
-  rightController: {fileID: 0}
+  leftController: {fileID: 1302711620}
+  rightController: {fileID: 1302711619}
 --- !u!4 &1241030032
 Transform:
   m_ObjectHideFlags: 0
