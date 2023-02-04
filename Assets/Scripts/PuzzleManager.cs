@@ -1,11 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PuzzleManager : MonoBehaviour
 {
-    public static PuzzleManager Instance;
-
     public Transform cubesParent;
     public PuzzleCube cubePrefab; // Prefab for the cube game object
     public Vector2Int gridSize = new (6,10); // Number of cubes in each row and column of the grid
@@ -20,13 +20,16 @@ public class PuzzleManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (cubesParent == null)
+            cubesParent = transform;
+        foreach (var cube in cubesParent.GetComponentsInChildren<PuzzleCube>())
+        {
+            cube.Init(this);
+        }
     }
 
     private void Start()
     {
-        if (cubesParent == null)
-            cubesParent = transform;
         foreach (var cube in cubesParent.GetComponentsInChildren<PuzzleCube>())
         {
             var pos = GetCell(cube.transform.position);
@@ -127,9 +130,12 @@ public class PuzzleManager : MonoBehaviour
                 cellPosition.z -= spacing / 4;
             }
         }
+        else
+        {
+            if (height == 0 && _required.ContainsKey(cube) && _required[cube] == newPos)
+                cube.LockInPlace();
+        }
         _movables[cube] = newPos;
-        if (!extraZ && PuzzleSolved())
-            FinishedPuzzle?.Invoke();
 
         var final = transform.position + cellPosition;
         cube.target.position = final;
@@ -142,11 +148,15 @@ public class PuzzleManager : MonoBehaviour
             // Set the position of the game object to the snapped position
             cube.target.position = final;
             var s = newCell.Aggregate($"{cube.name}[{newPos}]", (current, c) => current + (c.name + " "));
-//            if(!extraZ)
-//                Debug.Log(s);
         }
         else 
             cube.target.localPosition = Vector3.zero;
+        
+        if (!extraZ && cube.required && PuzzleSolved())
+        {
+            FinishedPuzzle?.Invoke();
+            Debug.Log("Finished puzzle: " + name);
+        }
     }
 
     private Vector2Int GetCell(Vector3 worldPosition)
@@ -167,6 +177,6 @@ public class PuzzleManager : MonoBehaviour
 
     private bool PuzzleSolved()
     {
-        return _shuffled && _required.All(r => _movables[r.Key] == r.Value);
+        return _shuffled && _required.All(r => _movables[r.Key] == r.Value && r.Key.transform.localPosition.z > -1);
     }
 }

@@ -101,7 +101,6 @@ MonoBehaviour:
   movable: 1
   required: 0
   target: {fileID: 6969650142419123549}
-  disconnectDistance: 0.1
 --- !u!1 &8413025893893034585
 GameObject:
   m_ObjectHideFlags: 0

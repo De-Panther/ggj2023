@@ -13,11 +13,23 @@ public class PuzzleCube : MonoBehaviour
     private Vector3 _lastPos;
     private bool _extraZ;
     private bool _connectedToGrid = true;
+    private PuzzleManager _manager;
 
+    public void Init(PuzzleManager manager)
+    {
+        _manager = manager;
+    }
+    
     private void Start()
     {
         if (!movable)
-            GetComponent<MouseDragObject>().enabled = false;
+            LockInPlace();
+    }
+
+    public void LockInPlace()
+    {
+        movable = false;
+        GetComponent<MouseDragObject>().enabled = false;
     }
 
     private void Update()
@@ -33,7 +45,9 @@ public class PuzzleCube : MonoBehaviour
 
     private void PlaceCell()
     {
-        PuzzleManager.Instance.PlaceOnGrid(transform.position, this, _extraZ);
+        if(!movable)
+            return;
+        _manager.PlaceOnGrid(transform.position, this, _extraZ);
     }
     
     void OnMouseDown()
