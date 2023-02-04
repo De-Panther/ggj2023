@@ -17,15 +17,16 @@ namespace Coherence.Generated
 
 	public struct VisualUser_VisualUser_2895662808262937726 : ICoherenceComponentData
 	{
-		public SerializeEntityID controllerLeft;
-		public SerializeEntityID controllerRight;
-		public SerializeEntityID targetHead;
 		public bool controllerLeftEnable;
 		public bool controllerRightEnable;
+		public Vector3 controllerLeftPosition;
+		public Quaternion controllerLeftRotation;
+		public Vector3 controllerRightPosition;
+		public Quaternion controllerRightRotation;
 
 		public override string ToString()
 		{
-			return $"VisualUser_VisualUser_2895662808262937726(controllerLeft: {controllerLeft}, controllerRight: {controllerRight}, targetHead: {targetHead}, controllerLeftEnable: {controllerLeftEnable}, controllerRightEnable: {controllerRightEnable})";
+			return $"VisualUser_VisualUser_2895662808262937726(controllerLeftEnable: {controllerLeftEnable}, controllerRightEnable: {controllerRightEnable}, controllerLeftPosition: {controllerLeftPosition}, controllerLeftRotation: {controllerLeftRotation}, controllerRightPosition: {controllerRightPosition}, controllerRightRotation: {controllerRightRotation})";
 		}
 
 		public uint GetComponentType() => Definition.InternalVisualUser_VisualUser_2895662808262937726;
@@ -50,24 +51,6 @@ namespace Coherence.Generated
 			if ((mask & 0x01) != 0)
 			{
 				Frame = other.Frame;
-				controllerLeft = other.controllerLeft;
-			}
-			mask >>= 1;
-			if ((mask & 0x01) != 0)
-			{
-				Frame = other.Frame;
-				controllerRight = other.controllerRight;
-			}
-			mask >>= 1;
-			if ((mask & 0x01) != 0)
-			{
-				Frame = other.Frame;
-				targetHead = other.targetHead;
-			}
-			mask >>= 1;
-			if ((mask & 0x01) != 0)
-			{
-				Frame = other.Frame;
 				controllerLeftEnable = other.controllerLeftEnable;
 			}
 			mask >>= 1;
@@ -77,26 +60,35 @@ namespace Coherence.Generated
 				controllerRightEnable = other.controllerRightEnable;
 			}
 			mask >>= 1;
+			if ((mask & 0x01) != 0)
+			{
+				Frame = other.Frame;
+				controllerLeftPosition = other.controllerLeftPosition;
+			}
+			mask >>= 1;
+			if ((mask & 0x01) != 0)
+			{
+				Frame = other.Frame;
+				controllerLeftRotation = other.controllerLeftRotation;
+			}
+			mask >>= 1;
+			if ((mask & 0x01) != 0)
+			{
+				Frame = other.Frame;
+				controllerRightPosition = other.controllerRightPosition;
+			}
+			mask >>= 1;
+			if ((mask & 0x01) != 0)
+			{
+				Frame = other.Frame;
+				controllerRightRotation = other.controllerRightRotation;
+			}
+			mask >>= 1;
 			return this;
 		}
 
 		public static void Serialize(VisualUser_VisualUser_2895662808262937726 data, uint mask, IOutProtocolBitStream bitStream)
 		{
-			if (bitStream.WriteMask((mask & 0x01) != 0))
-			{
-				bitStream.WriteEntity(data.controllerLeft);
-			}
-			mask >>= 1;
-			if (bitStream.WriteMask((mask & 0x01) != 0))
-			{
-				bitStream.WriteEntity(data.controllerRight);
-			}
-			mask >>= 1;
-			if (bitStream.WriteMask((mask & 0x01) != 0))
-			{
-				bitStream.WriteEntity(data.targetHead);
-			}
-			mask >>= 1;
 			if (bitStream.WriteMask((mask & 0x01) != 0))
 			{
 				bitStream.WriteBool(data.controllerLeftEnable);
@@ -105,6 +97,26 @@ namespace Coherence.Generated
 			if (bitStream.WriteMask((mask & 0x01) != 0))
 			{
 				bitStream.WriteBool(data.controllerRightEnable);
+			}
+			mask >>= 1;
+			if (bitStream.WriteMask((mask & 0x01) != 0))
+			{
+				bitStream.WriteVector3((data.controllerLeftPosition.ToCoreVector3()), FloatMeta.NoCompression());
+			}
+			mask >>= 1;
+			if (bitStream.WriteMask((mask & 0x01) != 0))
+			{
+				bitStream.WriteQuaternion((data.controllerLeftRotation.ToCoreQuaternion()), 32);
+			}
+			mask >>= 1;
+			if (bitStream.WriteMask((mask & 0x01) != 0))
+			{
+				bitStream.WriteVector3((data.controllerRightPosition.ToCoreVector3()), FloatMeta.NoCompression());
+			}
+			mask >>= 1;
+			if (bitStream.WriteMask((mask & 0x01) != 0))
+			{
+				bitStream.WriteQuaternion((data.controllerRightRotation.ToCoreQuaternion()), 32);
 			}
 			mask >>= 1;
 		}
@@ -116,28 +128,33 @@ namespace Coherence.Generated
 	
 			if (bitStream.ReadMask())
 			{
-				val.controllerLeft = bitStream.ReadEntity();
+				val.controllerLeftEnable = bitStream.ReadBool();
 				mask |= 0b00000000000000000000000000000001;
 			}
 			if (bitStream.ReadMask())
 			{
-				val.controllerRight = bitStream.ReadEntity();
+				val.controllerRightEnable = bitStream.ReadBool();
 				mask |= 0b00000000000000000000000000000010;
 			}
 			if (bitStream.ReadMask())
 			{
-				val.targetHead = bitStream.ReadEntity();
+				val.controllerLeftPosition = (bitStream.ReadVector3(FloatMeta.NoCompression())).ToUnityVector3();
 				mask |= 0b00000000000000000000000000000100;
 			}
 			if (bitStream.ReadMask())
 			{
-				val.controllerLeftEnable = bitStream.ReadBool();
+				val.controllerLeftRotation = (bitStream.ReadQuaternion(32)).ToUnityQuaternion();
 				mask |= 0b00000000000000000000000000001000;
 			}
 			if (bitStream.ReadMask())
 			{
-				val.controllerRightEnable = bitStream.ReadBool();
+				val.controllerRightPosition = (bitStream.ReadVector3(FloatMeta.NoCompression())).ToUnityVector3();
 				mask |= 0b00000000000000000000000000010000;
+			}
+			if (bitStream.ReadMask())
+			{
+				val.controllerRightRotation = (bitStream.ReadQuaternion(32)).ToUnityQuaternion();
+				mask |= 0b00000000000000000000000000100000;
 			}
 			return (val, mask, null);
 		}
@@ -147,28 +164,33 @@ namespace Coherence.Generated
 			var val = new VisualUser_VisualUser_2895662808262937726();
 			if (bitStream.ReadMask())
 			{
-				val.controllerLeft = bitStream.ReadEntity();
+				val.controllerLeftEnable = bitStream.ReadBool();
 				mask |= 0b00000000000000000000000000000001;
 			}
 			if (bitStream.ReadMask())
 			{
-				val.controllerRight = bitStream.ReadEntity();
+				val.controllerRightEnable = bitStream.ReadBool();
 				mask |= 0b00000000000000000000000000000010;
 			}
 			if (bitStream.ReadMask())
 			{
-				val.targetHead = bitStream.ReadEntity();
+				val.controllerLeftPosition = (bitStream.ReadVector3(FloatMeta.NoCompression())).ToUnityVector3();
 				mask |= 0b00000000000000000000000000000100;
 			}
 			if (bitStream.ReadMask())
 			{
-				val.controllerLeftEnable = bitStream.ReadBool();
+				val.controllerLeftRotation = (bitStream.ReadQuaternion(32)).ToUnityQuaternion();
 				mask |= 0b00000000000000000000000000001000;
 			}
 			if (bitStream.ReadMask())
 			{
-				val.controllerRightEnable = bitStream.ReadBool();
+				val.controllerRightPosition = (bitStream.ReadVector3(FloatMeta.NoCompression())).ToUnityVector3();
 				mask |= 0b00000000000000000000000000010000;
+			}
+			if (bitStream.ReadMask())
+			{
+				val.controllerRightRotation = (bitStream.ReadQuaternion(32)).ToUnityQuaternion();
+				mask |= 0b00000000000000000000000000100000;
 			}
 
 			return (val, mask, 0);

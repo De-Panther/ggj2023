@@ -2,7 +2,7 @@
   "dependencies": {
     "com.de-panther.webxr": "0.16.0-preview",
     "com.de-panther.webxr-input-profiles-loader": "0.4.0",
-    "com.de-panther.webxr-interactions": "0.16.1-preview",
+    "com.de-panther.webxr-interactions": "0.16.2-preview",
     "io.coherence.sdk": "0.10.8",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.rider": "3.0.18",

@@ -22,117 +22,6 @@ namespace Coherence.Generated
 	using Logger = Coherence.Log.Logger;
 	using UnityEngine.Scripting;
 
-	public class Binding_3d8e0d6bf6d1f18448fd5924dc4297a2_550bb64c_41b0_4d54_b764_3fcaa77cf507 : ReferenceBinding
-	{
-		private VisualUser CastedUnityComponent;		
-
-		protected override void OnBindingCloned()
-		{
-			CastedUnityComponent = (VisualUser)UnityComponent;
-		}
-		public override string CoherenceComponentName => "VisualUser_VisualUser_2895662808262937726";
-
-		public override uint FieldMask => 0b00000000000000000000000000000001;
-
-		public override SerializeEntityID Value
-		{
-			get => (SerializeEntityID)coherenceSync.MonoBridge.UnityObjectToEntityId(CastedUnityComponent.controllerLeft);
-			set => CastedUnityComponent.controllerLeft = coherenceSync.MonoBridge.EntityIdToTransform(value);
-		}
-
-		protected override SerializeEntityID ReadComponentData(ICoherenceComponentData coherenceComponent)
-		{
-			var update = (VisualUser_VisualUser_2895662808262937726)coherenceComponent;
-			return update.controllerLeft;
-		}
-		
-		public override ICoherenceComponentData WriteComponentData(ICoherenceComponentData coherenceComponent)
-		{
-			var update = (VisualUser_VisualUser_2895662808262937726)coherenceComponent;
-			update.controllerLeft = Value;
-			return update;
-		}
-
-		public override ICoherenceComponentData CreateComponentData()
-		{
-			return new VisualUser_VisualUser_2895662808262937726();
-		}
-	}
-
-	public class Binding_3d8e0d6bf6d1f18448fd5924dc4297a2_caac249c_f5a5_437b_900d_65773bc87f64 : ReferenceBinding
-	{
-		private VisualUser CastedUnityComponent;		
-
-		protected override void OnBindingCloned()
-		{
-			CastedUnityComponent = (VisualUser)UnityComponent;
-		}
-		public override string CoherenceComponentName => "VisualUser_VisualUser_2895662808262937726";
-
-		public override uint FieldMask => 0b00000000000000000000000000000010;
-
-		public override SerializeEntityID Value
-		{
-			get => (SerializeEntityID)coherenceSync.MonoBridge.UnityObjectToEntityId(CastedUnityComponent.controllerRight);
-			set => CastedUnityComponent.controllerRight = coherenceSync.MonoBridge.EntityIdToTransform(value);
-		}
-
-		protected override SerializeEntityID ReadComponentData(ICoherenceComponentData coherenceComponent)
-		{
-			var update = (VisualUser_VisualUser_2895662808262937726)coherenceComponent;
-			return update.controllerRight;
-		}
-		
-		public override ICoherenceComponentData WriteComponentData(ICoherenceComponentData coherenceComponent)
-		{
-			var update = (VisualUser_VisualUser_2895662808262937726)coherenceComponent;
-			update.controllerRight = Value;
-			return update;
-		}
-
-		public override ICoherenceComponentData CreateComponentData()
-		{
-			return new VisualUser_VisualUser_2895662808262937726();
-		}
-	}
-
-	public class Binding_3d8e0d6bf6d1f18448fd5924dc4297a2_b900ef6f_1feb_4d79_b345_35b6d74e7aab : ReferenceBinding
-	{
-		private VisualUser CastedUnityComponent;		
-
-		protected override void OnBindingCloned()
-		{
-			CastedUnityComponent = (VisualUser)UnityComponent;
-		}
-		public override string CoherenceComponentName => "VisualUser_VisualUser_2895662808262937726";
-
-		public override uint FieldMask => 0b00000000000000000000000000000100;
-
-		public override SerializeEntityID Value
-		{
-			get => (SerializeEntityID)coherenceSync.MonoBridge.UnityObjectToEntityId(CastedUnityComponent.targetHead);
-			set => CastedUnityComponent.targetHead = coherenceSync.MonoBridge.EntityIdToTransform(value);
-		}
-
-		protected override SerializeEntityID ReadComponentData(ICoherenceComponentData coherenceComponent)
-		{
-			var update = (VisualUser_VisualUser_2895662808262937726)coherenceComponent;
-			return update.targetHead;
-		}
-		
-		public override ICoherenceComponentData WriteComponentData(ICoherenceComponentData coherenceComponent)
-		{
-			var update = (VisualUser_VisualUser_2895662808262937726)coherenceComponent;
-			update.targetHead = Value;
-			return update;
-		}
-
-		public override ICoherenceComponentData CreateComponentData()
-		{
-			return new VisualUser_VisualUser_2895662808262937726();
-		}
-	}
-
 	public class Binding_3d8e0d6bf6d1f18448fd5924dc4297a2_0adf2717_64ba_4a79_9ef9_d192c14fcf83 : BoolBinding
 	{
 		private VisualUser CastedUnityComponent;		
@@ -143,7 +32,7 @@ namespace Coherence.Generated
 		}
 		public override string CoherenceComponentName => "VisualUser_VisualUser_2895662808262937726";
 
-		public override uint FieldMask => 0b00000000000000000000000000001000;
+		public override uint FieldMask => 0b00000000000000000000000000000001;
 
 		public override bool Value
 		{
@@ -180,7 +69,7 @@ namespace Coherence.Generated
 		}
 		public override string CoherenceComponentName => "VisualUser_VisualUser_2895662808262937726";
 
-		public override uint FieldMask => 0b00000000000000000000000000010000;
+		public override uint FieldMask => 0b00000000000000000000000000000010;
 
 		public override bool Value
 		{
@@ -198,6 +87,154 @@ namespace Coherence.Generated
 		{
 			var update = (VisualUser_VisualUser_2895662808262937726)coherenceComponent;
 			update.controllerRightEnable = Value;
+			return update;
+		}
+
+		public override ICoherenceComponentData CreateComponentData()
+		{
+			return new VisualUser_VisualUser_2895662808262937726();
+		}
+	}
+
+	public class Binding_3d8e0d6bf6d1f18448fd5924dc4297a2_61fca17a_7894_457b_9e8a_b28b8502e60a : Vector3Binding
+	{
+		private VisualUser CastedUnityComponent;		
+
+		protected override void OnBindingCloned()
+		{
+			CastedUnityComponent = (VisualUser)UnityComponent;
+		}
+		public override string CoherenceComponentName => "VisualUser_VisualUser_2895662808262937726";
+
+		public override uint FieldMask => 0b00000000000000000000000000000100;
+
+		public override Vector3 Value
+		{
+			get => (Vector3)(UnityEngine.Vector3)(CastedUnityComponent.controllerLeftPosition);
+			set => CastedUnityComponent.controllerLeftPosition = (UnityEngine.Vector3)(value);
+		}
+
+		protected override Vector3 ReadComponentData(ICoherenceComponentData coherenceComponent)
+		{
+			var update = (VisualUser_VisualUser_2895662808262937726)coherenceComponent;
+			return update.controllerLeftPosition;
+		}
+		
+		public override ICoherenceComponentData WriteComponentData(ICoherenceComponentData coherenceComponent)
+		{
+			var update = (VisualUser_VisualUser_2895662808262937726)coherenceComponent;
+			update.controllerLeftPosition = Value;
+			return update;
+		}
+
+		public override ICoherenceComponentData CreateComponentData()
+		{
+			return new VisualUser_VisualUser_2895662808262937726();
+		}
+	}
+
+	public class Binding_3d8e0d6bf6d1f18448fd5924dc4297a2_4ffef9a0_3ee7_416f_af14_17087dcf962c : QuaternionBinding
+	{
+		private VisualUser CastedUnityComponent;		
+
+		protected override void OnBindingCloned()
+		{
+			CastedUnityComponent = (VisualUser)UnityComponent;
+		}
+		public override string CoherenceComponentName => "VisualUser_VisualUser_2895662808262937726";
+
+		public override uint FieldMask => 0b00000000000000000000000000001000;
+
+		public override Quaternion Value
+		{
+			get => (Quaternion)(UnityEngine.Quaternion)(CastedUnityComponent.controllerLeftRotation);
+			set => CastedUnityComponent.controllerLeftRotation = (UnityEngine.Quaternion)(value);
+		}
+
+		protected override Quaternion ReadComponentData(ICoherenceComponentData coherenceComponent)
+		{
+			var update = (VisualUser_VisualUser_2895662808262937726)coherenceComponent;
+			return update.controllerLeftRotation;
+		}
+		
+		public override ICoherenceComponentData WriteComponentData(ICoherenceComponentData coherenceComponent)
+		{
+			var update = (VisualUser_VisualUser_2895662808262937726)coherenceComponent;
+			update.controllerLeftRotation = Value;
+			return update;
+		}
+
+		public override ICoherenceComponentData CreateComponentData()
+		{
+			return new VisualUser_VisualUser_2895662808262937726();
+		}
+	}
+
+	public class Binding_3d8e0d6bf6d1f18448fd5924dc4297a2_8126f34e_05fe_4ad7_b739_85ba84dd5d49 : Vector3Binding
+	{
+		private VisualUser CastedUnityComponent;		
+
+		protected override void OnBindingCloned()
+		{
+			CastedUnityComponent = (VisualUser)UnityComponent;
+		}
+		public override string CoherenceComponentName => "VisualUser_VisualUser_2895662808262937726";
+
+		public override uint FieldMask => 0b00000000000000000000000000010000;
+
+		public override Vector3 Value
+		{
+			get => (Vector3)(UnityEngine.Vector3)(CastedUnityComponent.controllerRightPosition);
+			set => CastedUnityComponent.controllerRightPosition = (UnityEngine.Vector3)(value);
+		}
+
+		protected override Vector3 ReadComponentData(ICoherenceComponentData coherenceComponent)
+		{
+			var update = (VisualUser_VisualUser_2895662808262937726)coherenceComponent;
+			return update.controllerRightPosition;
+		}
+		
+		public override ICoherenceComponentData WriteComponentData(ICoherenceComponentData coherenceComponent)
+		{
+			var update = (VisualUser_VisualUser_2895662808262937726)coherenceComponent;
+			update.controllerRightPosition = Value;
+			return update;
+		}
+
+		public override ICoherenceComponentData CreateComponentData()
+		{
+			return new VisualUser_VisualUser_2895662808262937726();
+		}
+	}
+
+	public class Binding_3d8e0d6bf6d1f18448fd5924dc4297a2_b3500e7e_f654_483d_9196_e633b1a80b8e : QuaternionBinding
+	{
+		private VisualUser CastedUnityComponent;		
+
+		protected override void OnBindingCloned()
+		{
+			CastedUnityComponent = (VisualUser)UnityComponent;
+		}
+		public override string CoherenceComponentName => "VisualUser_VisualUser_2895662808262937726";
+
+		public override uint FieldMask => 0b00000000000000000000000000100000;
+
+		public override Quaternion Value
+		{
+			get => (Quaternion)(UnityEngine.Quaternion)(CastedUnityComponent.controllerRightRotation);
+			set => CastedUnityComponent.controllerRightRotation = (UnityEngine.Quaternion)(value);
+		}
+
+		protected override Quaternion ReadComponentData(ICoherenceComponentData coherenceComponent)
+		{
+			var update = (VisualUser_VisualUser_2895662808262937726)coherenceComponent;
+			return update.controllerRightRotation;
+		}
+		
+		public override ICoherenceComponentData WriteComponentData(ICoherenceComponentData coherenceComponent)
+		{
+			var update = (VisualUser_VisualUser_2895662808262937726)coherenceComponent;
+			update.controllerRightRotation = Value;
 			return update;
 		}
 
@@ -227,36 +264,6 @@ namespace Coherence.Generated
 			coherenceSync.usingReflection = false;
 
 			logger = coherenceSync.logger.With<CoherenceSyncVisualUser>();
-			if (coherenceSync.TryGetBindingByGuid("550bb64c-41b0-4d54-b764-3fcaa77cf507", "controllerLeft", out Binding InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerLeft))
-			{
-				var clone = new Binding_3d8e0d6bf6d1f18448fd5924dc4297a2_550bb64c_41b0_4d54_b764_3fcaa77cf507();
-				InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerLeft.CloneTo(clone);
-				coherenceSync.Bindings[coherenceSync.Bindings.IndexOf(InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerLeft)] = clone;
-			}
-			else
-			{
-				logger.Error("Couldn't find binding (VisualUser).controllerLeft");
-			}
-			if (coherenceSync.TryGetBindingByGuid("caac249c-f5a5-437b-900d-65773bc87f64", "controllerRight", out Binding InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerRight))
-			{
-				var clone = new Binding_3d8e0d6bf6d1f18448fd5924dc4297a2_caac249c_f5a5_437b_900d_65773bc87f64();
-				InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerRight.CloneTo(clone);
-				coherenceSync.Bindings[coherenceSync.Bindings.IndexOf(InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerRight)] = clone;
-			}
-			else
-			{
-				logger.Error("Couldn't find binding (VisualUser).controllerRight");
-			}
-			if (coherenceSync.TryGetBindingByGuid("b900ef6f-1feb-4d79-b345-35b6d74e7aab", "targetHead", out Binding InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_targetHead))
-			{
-				var clone = new Binding_3d8e0d6bf6d1f18448fd5924dc4297a2_b900ef6f_1feb_4d79_b345_35b6d74e7aab();
-				InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_targetHead.CloneTo(clone);
-				coherenceSync.Bindings[coherenceSync.Bindings.IndexOf(InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_targetHead)] = clone;
-			}
-			else
-			{
-				logger.Error("Couldn't find binding (VisualUser).targetHead");
-			}
 			if (coherenceSync.TryGetBindingByGuid("0adf2717-64ba-4a79-9ef9-d192c14fcf83", "controllerLeftEnable", out Binding InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerLeftEnable))
 			{
 				var clone = new Binding_3d8e0d6bf6d1f18448fd5924dc4297a2_0adf2717_64ba_4a79_9ef9_d192c14fcf83();
@@ -276,6 +283,46 @@ namespace Coherence.Generated
 			else
 			{
 				logger.Error("Couldn't find binding (VisualUser).controllerRightEnable");
+			}
+			if (coherenceSync.TryGetBindingByGuid("61fca17a-7894-457b-9e8a-b28b8502e60a", "controllerLeftPosition", out Binding InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerLeftPosition))
+			{
+				var clone = new Binding_3d8e0d6bf6d1f18448fd5924dc4297a2_61fca17a_7894_457b_9e8a_b28b8502e60a();
+				InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerLeftPosition.CloneTo(clone);
+				coherenceSync.Bindings[coherenceSync.Bindings.IndexOf(InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerLeftPosition)] = clone;
+			}
+			else
+			{
+				logger.Error("Couldn't find binding (VisualUser).controllerLeftPosition");
+			}
+			if (coherenceSync.TryGetBindingByGuid("4ffef9a0-3ee7-416f-af14-17087dcf962c", "controllerLeftRotation", out Binding InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerLeftRotation))
+			{
+				var clone = new Binding_3d8e0d6bf6d1f18448fd5924dc4297a2_4ffef9a0_3ee7_416f_af14_17087dcf962c();
+				InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerLeftRotation.CloneTo(clone);
+				coherenceSync.Bindings[coherenceSync.Bindings.IndexOf(InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerLeftRotation)] = clone;
+			}
+			else
+			{
+				logger.Error("Couldn't find binding (VisualUser).controllerLeftRotation");
+			}
+			if (coherenceSync.TryGetBindingByGuid("8126f34e-05fe-4ad7-b739-85ba84dd5d49", "controllerRightPosition", out Binding InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerRightPosition))
+			{
+				var clone = new Binding_3d8e0d6bf6d1f18448fd5924dc4297a2_8126f34e_05fe_4ad7_b739_85ba84dd5d49();
+				InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerRightPosition.CloneTo(clone);
+				coherenceSync.Bindings[coherenceSync.Bindings.IndexOf(InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerRightPosition)] = clone;
+			}
+			else
+			{
+				logger.Error("Couldn't find binding (VisualUser).controllerRightPosition");
+			}
+			if (coherenceSync.TryGetBindingByGuid("b3500e7e-f654-483d-9196-e633b1a80b8e", "controllerRightRotation", out Binding InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerRightRotation))
+			{
+				var clone = new Binding_3d8e0d6bf6d1f18448fd5924dc4297a2_b3500e7e_f654_483d_9196_e633b1a80b8e();
+				InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerRightRotation.CloneTo(clone);
+				coherenceSync.Bindings[coherenceSync.Bindings.IndexOf(InternalVisualUser_VisualUser_2895662808262937726_VisualUser_VisualUser_2895662808262937726_controllerRightRotation)] = clone;
+			}
+			else
+			{
+				logger.Error("Couldn't find binding (VisualUser).controllerRightRotation");
 			}
 		}
 
