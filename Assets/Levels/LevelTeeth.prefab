@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7551154978785038555}
+  - component: {fileID: 189122621191133725}
   m_Layer: 0
-  m_Name: Level1 1
+  m_Name: LevelTeeth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,6 +38,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &189122621191133725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7551154978785038554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64a958d123f8045c6b4612395268797d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubesParent: {fileID: 7551154978785038555}
+  spacing: 0.15
+  disconnectDistance: 0.1
 --- !u!1001 &1556079526252672455
 PrefabInstance:
   m_ObjectHideFlags: 0

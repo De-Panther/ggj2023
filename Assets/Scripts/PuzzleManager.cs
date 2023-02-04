@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,8 +6,6 @@ using Random = UnityEngine.Random;
 public class PuzzleManager : MonoBehaviour
 {
     public Transform cubesParent;
-    public PuzzleCube cubePrefab; // Prefab for the cube game object
-    public Vector2Int gridSize = new (6,10); // Number of cubes in each row and column of the grid
     public float spacing = 1f; // Space between cubes in the grid
     public float disconnectDistance = 0.1f;
     public System.Action FinishedPuzzle;
@@ -71,31 +68,6 @@ public class PuzzleManager : MonoBehaviour
         }
         _shuffled = true;
     }
-    
-    private void CreateFromPrefab()
-    {
-        // Create a loop to generate the grid of cubes
-        for (var x = 0; x < gridSize.x; x++)
-        {
-            for (var y = 0; y < gridSize.y; y++)
-            {
-                // Calculate the position of the current cube
-                var posX = x * spacing;
-                var posY = y * spacing;
-
-                // Instantiate a new cube at the calculated position
-                var cube = Instantiate(cubePrefab,  transform.position+new Vector3(posX, posY), Quaternion.identity, transform);
-                
-                // Store the newly created cube in the grid array
-                var posKey = new Vector2Int(x, y);
-                _grid.Add(posKey, new List<PuzzleCube> {cube});
-                _movables.Add(cube, posKey);
-                if (cube.required)
-                    _required.Add(cube, posKey);
-                cube.name += $"_{x},{y}";
-            }
-        }
-    }
 
     public void PlaceOnGrid(Vector2 position, PuzzleCube cube, bool extraZ)
     {
@@ -155,7 +127,7 @@ public class PuzzleManager : MonoBehaviour
         if (!extraZ && cube.required && PuzzleSolved())
         {
             FinishedPuzzle?.Invoke();
-            Debug.Log("Finished puzzle: " + name);
+            Debug.Log("Finished puzzle: " + name, this);
         }
     }
 
