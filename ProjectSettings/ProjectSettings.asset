@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: ggj2023
+  productName: Bricks in Space
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -138,8 +138,6 @@ PlayerSettings:
   preloadedAssets:
   - {fileID: 11400000, guid: 9faf5ed615088dd49b3720283682b51a, type: 2}
   - {fileID: 11400000, guid: cd5289bc366a8c84ab935267b59cb1d6, type: 2}
-  - {fileID: 11400000, guid: e2925e9778aeca64daa5e624e214e41f, type: 2}
-  - {fileID: -7640249947355704750, guid: c74494a0ffaa82c40bf1500fa350a3dc, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -348,7 +346,8 @@ PlayerSettings:
   openGLRequireES31AEP: 0
   openGLRequireES32: 0
   m_TemplateCustomTags:
-    DESCRIPTION: 
+    DESCRIPTION: A picture puzzle WebXR(XR:AR+VR) game. A giant cube made of mismatched
+      bricks on a floating island, is waiting for someone to put things in place.
     WEBXR_POLYFILL_CONFIG: 
   mobileMTRendering:
     Android: 1
@@ -617,7 +616,7 @@ PlayerSettings:
   webGLTemplate: PROJECT:WebXR2020
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
-  webGLCompressionFormat: 2
+  webGLCompressionFormat: 1
   webGLWasmArithmeticExceptions: 0
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
